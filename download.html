@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Dialog dengan ProgressBar</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+
+<button id="showDownloadDialog">Mulai Unduh</button>
+
+<div id="downloadDialog" title="Proses Unduh">
+  <div id="progressBarWrapper">
+    <div id="progressBar"></div>
+  </div>
+  <p id="progressText">0%</p>
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#downloadDialog").dialog({
+        autoOpen: false, 
+        modal: true, // Mengaktifkan mode modal untuk dialog
+        closeOnEscape: false, // Menonaktifkan kemampuan menutup dialog dengan tombol Escape
+        draggable: false, // Menonaktifkan kemampuan menyeret dialog
+        resizable: false, // Menonaktifkan kemampuan merubah ukuran dialog
+        width: 300 // Menentukan lebar dialog
+    });
+
+    // Menampilkan dialog download ketika tombol 'Mulai Unduh' diklik
+    $("#showDownloadDialog").click(function(){
+        $("#downloadDialog").dialog("open");
+        simulateDownload(); // Memulai simulasi unduhan
+    });
+
+    // Fungsi untuk mensimulasikan proses unduhan
+    function simulateDownload() {
+        var progress = 0;
+        var progressBar = $("#progressBar");
+        var progressText = $("#progressText");
+
+        // Mengatur interval untuk mengupdate progress bar
+        var interval = setInterval(function(){
+            progress += Math.random() * 10; // Menambahkan nilai acak pada progress
+
+            // Batas maksimum progress adalah 100%
+            if (progress > 100) {
+                progress = 100;
+                clearInterval(interval); // Menghentikan interval setelah mencapai 100%
+                $("#downloadDialog").dialog("close"); // Menutup dialog setelah proses unduh selesai
+            }
+
+            // Memperbarui nilai progress bar dan teks
+            progressBar.css("width", progress + "%");
+            progressText.text(Math.round(progress) + "%");
+        }, 500); // Interval update setiap 500 milidetik
+    }
+});
+</script>
+
+</body>
+</html>

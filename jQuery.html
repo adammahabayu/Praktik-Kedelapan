@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $(".ex .hide").click(function(){
+    $(this).parents(".ex").hide("slow");
+  });
+});
+</script>
+<style> 
+div.ex {
+  background-color: #e5eecc;
+  padding: 7px;
+  border: solid 1px #c3c3c3;
+}
+</style>
+</head>
+<body>
+
+<h3>Jawa Timur</h3>
+
+<div class="ex">
+  <button class="hide">Hide me</button>
+  <p>Nama: Adam Mahabayu<br> 
+  Mentoro, Sumobito,<br>
+  Jombang</p>
+</div>
+
+<h3>Jawa Tengah</h3>
+
+<div class="ex">
+  <button class="hide">Hide me</button>
+  <p>Nama: Kalasha Anasera<br> 
+  Gedongtengen, Yogyakarta<br>
+  Daerah Istimewa Yogyakarta</p>
+</div>
+
+</body>
+</html>

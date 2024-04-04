@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real-Time Clock</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <h1>Real-Time Clock</h1>
+    <p id="current-time"></p>
+
+    <script>
+        function displayCurrentTime() {
+            var currentTime = new Date();
+            
+            var currentYear = currentTime.getFullYear();
+            var currentMonth = currentTime.getMonth() + 1; 
+            var currentDay = currentTime.getDate();
+            var currentHour = currentTime.getHours();
+            var currentMinute = currentTime.getMinutes();
+            var currentSecond = currentTime.getSeconds();
+
+            currentMonth = currentMonth < 10 ? '0' + currentMonth : currentMonth;
+            currentDay = currentDay < 10 ? '0' + currentDay : currentDay;
+            currentHour = currentHour < 10 ? '0' + currentHour : currentHour;
+            currentMinute = currentMinute < 10 ? '0' + currentMinute : currentMinute;
+            currentSecond = currentSecond < 10 ? '0' + currentSecond : currentSecond;
+
+            var currentTimeString = currentYear + '-' + currentMonth + '-' + currentDay + ' ' + currentHour + ':' + currentMinute + ':' + currentSecond;
+
+            document.getElementById('current-time').innerText = currentTimeString;
+        }
+
+        setInterval(displayCurrentTime, 1000);
+    </script>
+</body>
+</html>
